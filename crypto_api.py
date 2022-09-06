@@ -27,4 +27,4 @@ class CryptoData:
         
         response = session.get(self.endpoint, params=self.parameters)
         data = json.loads(response.text)
-        return data['data'][0]['quote']['USD']['percent_change_24h']
+        return data['data'][0]['quote']['USD']

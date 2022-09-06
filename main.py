@@ -17,12 +17,13 @@ class Twitter:
     
     def send_tweet(self):
         crypto = crypto_api.CryptoData()
-        if str(crypto.get_data())[0] == '-':
-            text = f"Sell, sell, sell!\n-\nPercentage change over the last 24 hours: {round(crypto.get_data(), 2)}"
+        if str(crypto.get_data()['percent_change_24h'])[0] == '-':
+            text = f"Sell, sell, sell!\n-\nCurrent Price: ${round(crypto.get_data()['price'], 2)}\nPercentage change over the last 24 hours: {round(crypto.get_data()['percent_change_24h'], 2)}%"
             self.client.create_tweet(text=text)
         else:
-            text = f"Buy, buy, buy!\n-\nPercentage change over the last 24 hours: {round(crypto.get_data(), 2)}"
+            text = f"Buy, buy, buy!\n-\nCurrent Price: ${round(crypto.get_data()['price'], 2)}\nPercentage change over the last 24 hours: +{round(crypto.get_data()['percent_change_24h'], 2)}%"
             self.client.create_tweet(text=text)
+
 
         
 if __name__ == "__main__":
